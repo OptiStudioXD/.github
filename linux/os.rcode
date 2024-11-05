@@ -1,5 +1,5 @@
 ; Este codigo hace que .github no este disponible para usuarios de Linux
-; PD: No funciona
+; PD: No funciona, bueno si pero tiene errores
 
 import lib #OptiStudio.Official.Library
 import lib #Lincompatibility  - - ; Este sirve para realizar compatibilidad con Linux
