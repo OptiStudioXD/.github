@@ -1,0 +1,75 @@
+; Este codigo hace que .github no este disponible para usuarios de Linux
+; PD: No funciona
+
+import lib #OptiStudio.Official.Library
+import lib #Lincompatibility  - - ; Este sirve para realizar compatibilidad con Linux
+import lib #HTML by OptiStudio - - ; Compatibilidad con codigo HTML
+import lib #SHCode - - ; Compatibilidad con .sh
+import lib #Batchfile - - ; Compatibilidad con .bat
+load >import lib >nan
+
+use .github w/ html.github.com
+load link > https://github.com/OptiStudioXD/.github
+
+import >load link to "data.rcode"
+
+; Empezamos con HTML
+use lib #HTML by OptiStudio
+    if not found #HTML by OptiStudio
+	stop >w>procces
+	
+#HTML
+>lib #HTML
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloqueo de Acceso</title>
+    <script>
+     // Función para comprobar el sistema operativo
+        function checkOS() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            if (userAgent.includes('linux')) {
+                // Redirigir a Google
+                window.location.href = 'https://www.google.com';
+            }
+        }
+        window.onload = checkOS;
+    </script>
+</head>
+<body>
+    <h1>Bienvenido a la página</h1>
+    <p>Esta página está disponible para usuarios que no utilizan Linux.</p>
+</body>
+</html>
+
+>lib #HTML stop coding
+
+display text "Label"
+local >label
+
+>label 
+crt localscript.rpc
+
+>localscript
+found "local >label"
+       label
+       load label as .rconfig
+	   
+>label.rconfig
+display text "Label"
+    change >last
+	to "Linux users can enter"
+	textDisplay.opacity=100
+	textDisplay.size=auto
+	
+; Como ya tenemos el Reachcode 1.2, ahora para cerrar se usa el comando "exit" y puedes agregar la variable "exit >s" para cancelar los procesos y luego cerrar el script, existen mas variables pero eso es secreto
+; Ya luego revelaremos Reachwriter y Reachcode para el publico.
+exit >s
+
+; Despues de cerrar el script tiene que terminar los procesos en segundo plano, para eso se usa "%scriptdir% taskkill >last"
+%scriptdir% taskkill >last
+
+end ; Se usa esto para terminar absolutamente los procesos dentro del script
